@@ -16,6 +16,7 @@ func main() {
 	fmt.Println("Getting PORT First")
 	port, err := strconv.Atoi(os.Getenv("PORT"))
 	if err == nil {
+		fmt.Println("Error Getting PORT ??")
 		log.Fatal(err)
 	}
 
