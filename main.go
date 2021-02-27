@@ -20,7 +20,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Starting server at port 80\n")
+	fmt.Printf("Starting server at port %d\n", port)
 
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
 		log.Fatal(err)
