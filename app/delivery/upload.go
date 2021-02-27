@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/url"
+	"os"
 
 	"cloud.google.com/go/storage"
 	"google.golang.org/api/option"
@@ -33,10 +34,19 @@ func (impl *Deliveries) Download() {
 	impl.Ctx.Output.Body(x)
 }
 
+//chmodFile
+func chmodFile() {
+	err := os.Chmod("../conf/keys.json", 0755)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 // Upload handler
 func (impl *Deliveries) Upload() {
 	ctx := impl.Ctx
 	// ctx.WriteString("aa")
+	chmodFile()
 	bucket := "pos-predict.appspot.com"
 
 	file, header, err := impl.Controller.GetFile("file")
