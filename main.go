@@ -16,18 +16,9 @@ func main() {
 	logs.Info("initialize delivery")
 
 	route.Common(delivery)
+	route.Upload(delivery)
 
 	fmt.Printf("Starting server at port %s\n", os.Getenv("PORT"))
 	web.Run(fmt.Sprintf(":%s", os.Getenv("PORT")))
-
-	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-	// 	fmt.Fprintf(w, "Hello!")
-	// })
-
-	// fmt.Printf("Starting server at port %s\n", os.Getenv("PORT"))
-
-	// if err := http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("PORT")), nil); err != nil {
-	// 	log.Fatal(err)
-	// }
 
 }
