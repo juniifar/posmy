@@ -13,6 +13,7 @@ func main() {
 		fmt.Fprintf(w, "Hello!")
 	})
 
+	fmt.Println("Getting PORT First")
 	port, err := strconv.Atoi(os.Getenv("PORT"))
 	if err == nil {
 		log.Fatal(err)
