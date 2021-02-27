@@ -1,15 +1,13 @@
 package delivery
 
 import (
+	"cloud.google.com/go/storage"
+	"google.golang.org/api/option"
+	"google.golang.org/appengine"
 	"io"
 	"io/ioutil"
 	"log"
 	"net/url"
-	"os"
-
-	"cloud.google.com/go/storage"
-	"google.golang.org/api/option"
-	"google.golang.org/appengine"
 )
 
 // Download handler
@@ -18,7 +16,7 @@ func (impl *Deliveries) Download() {
 	bucket := "pos-predict.appspot.com"
 
 	ctxt := appengine.NewContext(ctx.Request)
-	storageClient, err := storage.NewClient(ctxt, option.WithCredentialsFile("../conf/keys.json"))
+	storageClient, err := storage.NewClient(ctxt, option.WithCredentialsFile("/app/conf/keys.json"))
 	if err != nil {
 		log.Fatal(err)
 		return
@@ -35,18 +33,18 @@ func (impl *Deliveries) Download() {
 }
 
 //chmodFile
-func chmodFile() {
-	err := os.Chmod("../conf/keys.json", 0755)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
+//func chmodFile() {
+//	err := os.Chmod("../conf/keys.json", 0755)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//}
 
 // Upload handler
 func (impl *Deliveries) Upload() {
 	ctx := impl.Ctx
 	// ctx.WriteString("aa")
-	chmodFile()
+	//chmodFile()
 	bucket := "pos-predict.appspot.com"
 
 	file, header, err := impl.Controller.GetFile("file")
@@ -56,7 +54,7 @@ func (impl *Deliveries) Upload() {
 	}
 
 	ctxt := appengine.NewContext(ctx.Request)
-	storageClient, err := storage.NewClient(ctxt, option.WithCredentialsFile("../conf/keys.json"))
+	storageClient, err := storage.NewClient(ctxt, option.WithCredentialsFile("/app/conf/keys.json"))
 	if err != nil {
 		log.Fatal(err)
 		return
