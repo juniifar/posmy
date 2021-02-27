@@ -1,5 +1,7 @@
 module github.com/postmy
 
+// +heroku goVersion go1.16
+
 go 1.14
 
 require (
