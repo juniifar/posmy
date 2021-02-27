@@ -22,7 +22,7 @@ func (impl *Deliveries) Download() {
 	}
 
 	ctxt := appengine.NewContext(ctx.Request)
-	storageClient, err := storage.NewClient(ctxt, option.WithCredentialsFile("conf/keys.json"))
+	storageClient, err := storage.NewClient(ctxt, option.WithCredentialsFile("../conf/keys.json"))
 	if err != nil {
 		log.Fatal(err)
 		return
@@ -54,7 +54,7 @@ func (impl *Deliveries) Upload() {
 	}
 
 	ctxt := appengine.NewContext(ctx.Request)
-	storageClient, err := storage.NewClient(ctxt, option.WithCredentialsFile("conf/keys.json"))
+	storageClient, err := storage.NewClient(ctxt, option.WithCredentialsFile("../conf/keys.json"))
 	if err != nil {
 		log.Fatal(err)
 		return
