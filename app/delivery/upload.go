@@ -2,6 +2,7 @@ package delivery
 
 import (
 	"cloud.google.com/go/storage"
+	rsp "github.com/postmy/app/pkg/response"
 	"google.golang.org/api/option"
 	"google.golang.org/appengine"
 	"io"
@@ -79,6 +80,6 @@ func (impl *Deliveries) Upload() {
 	}
 
 	// impl.Ctx.Output.Body(u.EscapedPath())
-	ctx.WriteString(u.EscapedPath())
-	// rsp.WriteResponse(&impl.Controller, nil, u.EscapedPath())
+	//ctx.WriteString(u.EscapedPath())
+	rsp.WriteResponse(&impl.Controller, nil, u.EscapedPath())
 }
