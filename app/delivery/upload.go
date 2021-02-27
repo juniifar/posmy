@@ -7,7 +7,6 @@ import (
 	"net/url"
 
 	"cloud.google.com/go/storage"
-	"github.com/beego/beego/v2/core/config"
 	"google.golang.org/api/option"
 	"google.golang.org/appengine"
 )
@@ -15,11 +14,7 @@ import (
 // Download handler
 func (impl *Deliveries) Download() {
 	ctx := impl.Ctx
-	bucket, err := config.String("dev::bucketGCS")
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
+	bucket := "pos-predict.appspot.com"
 
 	ctxt := appengine.NewContext(ctx.Request)
 	storageClient, err := storage.NewClient(ctxt, option.WithCredentialsFile("../conf/keys.json"))
@@ -41,11 +36,8 @@ func (impl *Deliveries) Download() {
 // Upload handler
 func (impl *Deliveries) Upload() {
 	ctx := impl.Ctx
-	bucket, err := config.String("dev::bucketGCS")
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
+	// ctx.WriteString("aa")
+	bucket := "pos-predict.appspot.com"
 
 	file, header, err := impl.Controller.GetFile("file")
 	if err != nil {
