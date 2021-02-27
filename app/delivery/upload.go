@@ -1,15 +1,15 @@
 package delivery
 
 import (
-	"cloud.google.com/go/storage"
-	"github.com/beego/beego/v2/core/config"
-	rsp "github.com/predictid/pos-be/app/pkg/response"
-	"google.golang.org/api/option"
-	"google.golang.org/appengine"
 	"io"
 	"io/ioutil"
 	"log"
 	"net/url"
+
+	"cloud.google.com/go/storage"
+	"github.com/beego/beego/v2/core/config"
+	"google.golang.org/api/option"
+	"google.golang.org/appengine"
 )
 
 // Download handler
@@ -78,5 +78,7 @@ func (impl *Deliveries) Upload() {
 		return
 	}
 
-	rsp.WriteResponse(&impl.Controller, nil, u.EscapedPath())
+	// impl.Ctx.Output.Body(u.EscapedPath())
+	ctx.WriteString(u.EscapedPath())
+	// rsp.WriteResponse(&impl.Controller, nil, u.EscapedPath())
 }
