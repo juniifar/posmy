@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"strconv"
 )
 
 func main() {
@@ -11,16 +13,16 @@ func main() {
 		fmt.Fprintf(w, "Hello!")
 	})
 
-	// fmt.Println("Getting PORT First")
-	// port, err := strconv.Atoi(os.Getenv("PORT"))
-	// if err == nil {
-	// 	fmt.Println("Error Getting PORT ??")
-	// 	log.Fatal(err)
-	// }
+	fmt.Println("Getting PORT First")
+	port, err := strconv.Atoi(os.Getenv("process.env.PORT"))
+	if err == nil {
+		fmt.Println("Error Getting PORT ??")
+		log.Fatal(err)
+	}
 
 	fmt.Printf("Starting server at port 80\n")
 
-	if err := http.ListenAndServe(fmt.Sprintf(":%d", 8080), nil); err != nil {
+	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
 		log.Fatal(err)
 	}
 }
